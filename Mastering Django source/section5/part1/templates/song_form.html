@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	{% if messages %}
+		{% for message in messages %} {{message}} {% endfor %}
+	{% endif %}
+	<form action="" method="post">{% csrf_token %}
+	{{form.management_form}}
+	<table>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Artist</th>
+				<th>{{col3|default:"Album"}}</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for f in form %}
+			<tr>{% for field in f %}
+				<td>{{field}}</td>
+				{% endfor %}
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	<input type="submit" value="Save"/>
+	</form>
+</body>
+</html>
